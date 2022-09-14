@@ -99,7 +99,7 @@ public class ClienteDAO {
 
 		return clientes;
 	}
-	// Metodo pra atualizar
+
 
 	public void update(Cliente cliente) {
 		String sql = "UPDATE cliente set nome = ?, email = ?, senha = ?, cpf = ?, id_acesso = ? WHERE id_cliente = ?;";
@@ -134,7 +134,7 @@ public class ClienteDAO {
 		}
 	}
 
-	// Metodo para deletar
+
 	public void deleteById(int id) {
 		String sql = "DELETE FROM cliente WHERE id_cliente = ?";
 

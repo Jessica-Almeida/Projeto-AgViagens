@@ -32,7 +32,6 @@ public class DestinoDAO {
 			pstm.setDate(3, new Date(formatter.parse(destino.getDataIda()).getTime()));
 			pstm.setDate(4, new Date(formatter.parse(destino.getDataVolta()).getTime()));
 			pstm.setDouble(5, destino.getPreco());
-
 			pstm.execute();
 
 		} catch (Exception e) {
@@ -104,8 +103,7 @@ public class DestinoDAO {
 	}
 
 	public void update(Destino destino) {
-		String sql = "UPDATE destino set pais = ?, cidade = ?, data_ida = ?, data_volta = ?, preco = ?"
-				+ "WHERE id_destino = ?;";
+		String sql = "UPDATE destino set pais = ?, cidade = ?, data_ida = ?, data_volta = ?, preco = ? WHERE id_destino = ?;";
 
 		try {
 			conn = ConnectionMySQL.createConnectionMySQL();
@@ -183,7 +181,7 @@ public class DestinoDAO {
 			rset = pstm.executeQuery();
 
 			rset.next();
-
+			destino.setId(rset.getInt("id_destino"));
 			destino.setPais(rset.getString("pais"));
 			destino.setCidade(rset.getString("cidade"));
 			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");

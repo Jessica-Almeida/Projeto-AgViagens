@@ -12,7 +12,6 @@ public class ClienteCrud {
 	public static void main(String[] args) {
 		ClienteDAO clienteDAO = new ClienteDAO();
 		AcessoDAO acessoDAO = new AcessoDAO();
-		Cliente cliente = new Cliente();
 
 		Scanner entrada = new Scanner(System.in);
 		int opcao, id = 0, id_acesso = 0;
@@ -33,58 +32,50 @@ public class ClienteCrud {
 			case 1: {
 
 				System.out.println("Digite o nome: ");
-				nome = entrada.next();
-				cliente.getNome();
+				entrada.nextLine();
+				nome = entrada.nextLine();
 				System.out.println("Digite o email: ");
 				email = entrada.next();
-				cliente.setEmail(email);
 				System.out.println("Digite a senha: ");
 				senha = entrada.next();
-				cliente.setSenha(senha);
 				System.out.println("Digite o CPF: ");
 				cpf = entrada.next();
-				cliente.setCpf(cpf);
 				System.out.println("Digite o id de acesso: ");
 				id_acesso = entrada.nextInt();
-				Acesso acesso = acessoDAO.getAcessoById(id_acesso);
 
-				Cliente cli = new Cliente(id, nome, email, senha, cpf, acesso);
-				clienteDAO.save(cli);
+				Acesso a1 = acessoDAO.getAcessoById(id_acesso);
+				Cliente c1 = new Cliente(id, nome, email, senha, cpf, a1);
+				clienteDAO.save(c1);
 
 				break;
 			}
 			case 2: {
 				System.out.println("Digite o ID do cliente para exclusao: ");
-
 				id = entrada.nextInt();
 
 				clienteDAO.deleteById(id);
+
 				break;
 			}
 			case 3: {
 
 				System.out.println("Digite o ID do cliente para atualizar: ");
-
 				id = entrada.nextInt();
-
 				System.out.println("Digite o nome: ");
-				nome = entrada.next();
-
+				entrada.nextLine();
+				nome = entrada.nextLine();
 				System.out.println("Digite o email: ");
 				email = entrada.next();
-
 				System.out.println("Digite a senha: ");
 				senha = entrada.next();
-
 				System.out.println("Digite o CPF: ");
 				cpf = entrada.next();
-
 				System.out.println("Digite o id de acesso: ");
 				id_acesso = entrada.nextInt();
-				Acesso acesso1 = acessoDAO.getAcessoById(id_acesso);
 
-				Cliente cli1 = new Cliente(id, nome, email, senha, cpf, acesso1);
-				clienteDAO.update(cli1);
+				Acesso a2 = acessoDAO.getAcessoById(id_acesso);
+				Cliente c2 = new Cliente(id, nome, email, senha, cpf, a2);
+				clienteDAO.update(c2);
 
 				break;
 			}
@@ -103,10 +94,10 @@ public class ClienteCrud {
 				System.out.print("Digite o ID para buscar: ");
 				int iD = entrada.nextInt();
 
-				Cliente c = clienteDAO.getClienteById(iD);
+				Cliente c3 = clienteDAO.getClienteById(iD);
 
-				System.out.println("Nome: " + c.getNome() + " Email: " + c.getEmail() + " Senha: " + c.getSenha()
-						+ "CPF: " + c.getCpf());
+				System.out.println("Nome: " + c3.getNome() + " Email: " + c3.getEmail() + " Senha: " + c3.getSenha()
+						+ " CPF: " + c3.getCpf());
 
 				System.out.println("----------------------------------- ");
 			}

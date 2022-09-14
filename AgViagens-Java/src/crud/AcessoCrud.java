@@ -10,7 +10,6 @@ public class AcessoCrud {
 	public static void main(String args[]) {
 
 		AcessoDAO acessoDAO = new AcessoDAO();
-		Acesso acesso = new Acesso();
 
 		Scanner entrada = new Scanner(System.in);
 		int opcao = 0;
@@ -32,17 +31,17 @@ public class AcessoCrud {
 			case 1: {
 				System.out.println("Digite o tipo de acesso: ");
 				tipo = entrada.next();
-				acesso.setTipo(tipo);
-				acessoDAO.save(acesso);
+
+				Acesso a1 = new Acesso(id, tipo);
+				acessoDAO.save(a1);
 
 				break;
 			}
 			case 2: {
 				System.out.println("Digite o ID do acesso para exclusao: ");
-				
-					id = entrada.nextInt();
+				id = entrada.nextInt();
 
-					acessoDAO.deleteById(id);
+				acessoDAO.deleteById(id);
 
 				break;
 			}
@@ -50,12 +49,11 @@ public class AcessoCrud {
 
 				System.out.println("Digite o ID do acesso para atualizar: ");
 				id = entrada.nextInt();
-
 				System.out.println("Digite o novo tipo de acesso: ");
 				tipo = entrada.next();
 
-				Acesso a = new Acesso(id, tipo);
-				acessoDAO.update(a);
+				Acesso a2 = new Acesso(id, tipo);
+				acessoDAO.update(a2);
 				break;
 			}
 			case 4: {
@@ -72,9 +70,9 @@ public class AcessoCrud {
 				System.out.print("Digite o ID para buscar: ");
 				int iD = entrada.nextInt();
 
-				Acesso a = acessoDAO.getAcessoById(iD);
+				Acesso a3 = acessoDAO.getAcessoById(iD);
 
-				System.out.println("Tipo: " + a.getTipo());
+				System.out.println("Tipo: " + a3.getTipo());
 
 				System.out.println("----------------------------------- ");
 			}

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,25 +17,22 @@ public class CompraDAO {
 	Connection conn = null;
 	PreparedStatement pstm = null;
 
-	
 	public void save(Compra compra) {
 		String sql = "INSERT INTO compra (data_compra, quantidade, total, id_destino, id_cliente) values(?,?,?,?,?)";
 
 		try {
-			
+
 			conn = ConnectionMySQL.createConnectionMySQL();
+
 			pstm = conn.prepareStatement(sql);
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			pstm.setDate(1, new Date(formatter.parse(compra.getData()).getTime()));
+
+			pstm.setDate(1, new Date(compra.getData().getTime()));
 			pstm.setInt(2, compra.getQuantidade());
 			pstm.setDouble(3, compra.getTotal());
 			pstm.setInt(4, compra.getDestino().getId());
 			pstm.setInt(5, compra.getCliente().getId());
-			
-			
 
-			
-			pstm.execute();
+			pstm.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,7 +50,6 @@ public class CompraDAO {
 		}
 
 	}
-
 
 	public List<Compra> getCompra() {
 		String sql = "select * from compra;";
@@ -76,13 +71,11 @@ public class CompraDAO {
 				Cliente cliente = new Cliente();
 
 				compra.setId(rset.getInt("id_compra"));
-				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-				compra.setData(formatter.format(rset.getDate("data_compra")));
+				compra.setData(rset.getDate("data_compra"));
 				compra.setQuantidade(rset.getInt("quantidade"));
 				compra.setTotal(rset.getDouble("total"));
 				destino.setId(rset.getInt("id_destino"));
 				cliente.setId(rset.getInt("id_cliente"));
-				
 
 				compras.add(compra);
 
@@ -110,23 +103,21 @@ public class CompraDAO {
 		return compras;
 	}
 
-
 	public void update(Compra compra) {
-		String sql = "UPDATE compra set data_compra = ?, quantidade = ?, total = ?, id_destino = ?, id_cliente = ?" + "WHERE id_compra = ?;";
+		String sql = "UPDATE compra set data_compra = ?, quantidade = ?, total = ?, id_destino = ?, id_cliente = ? WHERE id_compra = ?;";
 
 		try {
 			conn = ConnectionMySQL.createConnectionMySQL();
 
 			pstm = conn.prepareStatement(sql);
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");		
-			pstm.setDate(1, new Date(formatter.parse(compra.getData()).getTime()));
+			pstm.setDate(1, new Date(compra.getData().getTime()));
 			pstm.setInt(2, (compra.getQuantidade()));
 			pstm.setDouble(3, compra.getTotal());
 			pstm.setInt(4, compra.getDestino().getId());
 			pstm.setInt(5, compra.getCliente().getId());
 			pstm.setInt(6, compra.getId());
-		
-			pstm.execute(); 
+
+			pstm.execute();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -144,7 +135,6 @@ public class CompraDAO {
 		}
 	}
 
-	
 	public void deleteById(int id) {
 		String sql = "DELETE FROM compra WHERE id_compra = ?";
 
@@ -193,13 +183,11 @@ public class CompraDAO {
 
 			rset.next();
 			compra.setId(rset.getInt("id_compra"));
-			SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-			compra.setData(formatter.format(rset.getDate("data_compra")));
+			compra.setData(rset.getDate("data_compra"));
 			compra.setQuantidade(rset.getInt("quantidade"));
 			compra.setTotal(rset.getDouble("total"));
 			destino.setId(rset.getInt("id_destino"));
 			cliente.setId(rset.getInt("id_cliente"));
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();

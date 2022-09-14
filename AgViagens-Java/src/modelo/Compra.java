@@ -1,31 +1,26 @@
 package modelo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Compra {
 	private int id;
-	private LocalDate data;
+	private Date data;
 	private int quantidade;
 	private double total;
 	private Destino destino;
 	private Cliente cliente;
 
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
 	public Compra() {
 	}
 
-	public Compra(String data, int quantidade, Destino destino, Cliente cliente) {
-
-		this.data = LocalDate.parse(data, formatter);
+	public Compra(int id, int quantidade, Destino destino, Cliente cliente) {
+		this.id = id;
 		this.quantidade = quantidade;
 		this.total = valorTotal(destino.getPreco());
 		this.destino = destino;
 		this.cliente = cliente;
 
 	}
-
 
 	public int getId() {
 		return id;
@@ -35,12 +30,12 @@ public class Compra {
 		this.id = id;
 	}
 
-	public String getData() {
-		return formatter.format(data);
+	public Date getData() {
+		return data;
 	}
 
-	public void setData(String data) {
-		this.data = LocalDate.parse(data, formatter);
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public int getQuantidade() {
@@ -65,6 +60,7 @@ public class Compra {
 
 	public void setDestino(Destino destino) {
 		this.destino = destino;
+		this.total += destino.getPreco() * quantidade;
 	}
 
 	public Cliente getCliente() {

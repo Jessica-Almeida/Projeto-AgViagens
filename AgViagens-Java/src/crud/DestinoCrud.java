@@ -10,7 +10,6 @@ public class DestinoCrud {
 	public static void main(String args[]) {
 
 		DestinoDAO destinoDAO = new DestinoDAO();
-		Destino destino = new Destino();
 
 		Scanner entrada = new Scanner(System.in);
 		int opcao, id = 0;
@@ -31,31 +30,24 @@ public class DestinoCrud {
 			switch (opcao) {
 			case 1: {
 				System.out.println("Digite o País: ");
-				pais = entrada.next();
-				destino.setPais(pais);
+				entrada.nextLine();
+				pais = entrada.nextLine();
 				System.out.println("Digite a Cidade: ");
-				cidade = entrada.next();
-				destino.setCidade(cidade);
-				entrada.next();
+				cidade = entrada.nextLine();
 				System.out.println("Digite a data de ida: ");
 				dataIda = entrada.next();
-				destino.setDataIda(dataIda);
-
 				System.out.println("Digite a data de volta: ");
 				dataVolta = entrada.next();
-				destino.setDataVolta(dataVolta);
-
 				System.out.println("Digite o preço do destino: ");
 				preco = entrada.nextDouble();
-				destino.setPreco(preco);
 
-				destinoDAO.save(destino);
+				Destino d1 = new Destino(id, pais, cidade, dataIda, dataVolta, preco);
+				destinoDAO.save(d1);
 
 				break;
 			}
 			case 2: {
 				System.out.println("Digite o ID do destino para exclusao: ");
-
 				id = entrada.nextInt();
 
 				destinoDAO.deleteById(id);
@@ -65,35 +57,30 @@ public class DestinoCrud {
 			case 3: {
 
 				System.out.println("Digite o ID do destino para atualizar: ");
-
 				id = entrada.nextInt();
-
 				System.out.println("Digite o novo País: ");
-				pais = entrada.next();
-
+				entrada.nextLine();
+				pais = entrada.nextLine();
 				System.out.println("Digite a nova Cidade: ");
-				cidade = entrada.next();
-
+				cidade = entrada.nextLine();
 				System.out.println("Digite a nova data de ida: ");
 				dataIda = entrada.next();
-
 				System.out.println("Digite a nova data de volta: ");
 				dataVolta = entrada.next();
-
 				System.out.println("Digite o novo preço do destino: ");
 				preco = entrada.nextDouble();
 
-				Destino a = new Destino(id, pais, cidade, dataIda, dataVolta, preco);
-				destinoDAO.update(a);
+				Destino d2 = new Destino(id, pais, cidade, dataIda, dataVolta, preco);
+				destinoDAO.update(d2);
 
 				break;
 			}
 			case 4: {
 				for (Destino d : destinoDAO.getDestino()) {
 
-					System.out.println(
-							"Id: " + d.getId() + " País: " + d.getPais() + " Cidade:: " + d.getCidade() + " Data de ida: "
-									+ d.getDataIda() + " Data de volta: " + d.getDataVolta() + "Preço: " + d.getPreco());
+					System.out.println("Id: " + d.getId() + " País: " + d.getPais() + " Cidade: " + d.getCidade()
+							+ " Data de ida: " + d.getDataIda() + " Data de volta: " + d.getDataVolta() + " Preço: "
+							+ d.getPreco());
 
 					System.out.println("----------------------------------- ");
 				}
@@ -104,10 +91,10 @@ public class DestinoCrud {
 				System.out.print("Digite o ID para buscar: ");
 				int iD = entrada.nextInt();
 
-				Destino d = destinoDAO.getDestinoById(iD);
+				Destino d3 = destinoDAO.getDestinoById(iD);
 
-				System.out.println("País: " + d.getPais() + " Cidade: " + d.getCidade() + " Data de ida: "
-						+ d.getDataIda() + " Data de volta: " + d.getDataVolta() + " Preço: " + d.getPreco());
+				System.out.println("País: " + d3.getPais() + " Cidade: " + d3.getCidade() + " Data de ida: "
+						+ d3.getDataIda() + " Data de volta: " + d3.getDataVolta() + " Preço: " + d3.getPreco());
 
 				System.out.println("----------------------------------- ");
 			}
@@ -121,7 +108,6 @@ public class DestinoCrud {
 				System.out.println(opcao != 6 ? "opção invalida, digite novamente." : "");
 
 			}
-			;
 
 		} while (opcao != 6);
 
