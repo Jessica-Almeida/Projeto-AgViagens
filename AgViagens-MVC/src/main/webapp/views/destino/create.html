@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+
+<title>JN Tour | Destino</title>
+</head>
+
+<body>
+	<main class="container jumbotron bg-light my-5 shadow col-12 col-md-6">
+		<h2 class="text-center pt-4">CADASTRO - DESTINO</h2>
+		<form action="../../destino-create" class="m-5">
+			<div class="form-floating mb-3">
+				<input type="text" name="pais" class="form-control"
+					placeholder="pais" required> <label>País</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="text" name="cidade" class="form-control"
+					placeholder="cidade" required> <label>Cidade</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="text" name="dataIda" pattern="\d{2}\/\d{2}/\d{4}"
+					title="Digite uma data no formato: xx/xx/xxxx" class="form-control"
+					placeholder="data de ida" required> <label>Data de
+					ida</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="text" name="dataVolta" pattern="\d{2}\/\d{2}/\d{4}"
+					title="Digite uma data no formato: xx/xx/xxxx" class="form-control"
+					placeholder="data de volta" required> <label>Data
+					de volta</label>
+			</div>
+			<div class="form-floating mb-3">
+				<input type="number" name="preco" class="form-control"
+					placeholder="data de volta" required> <label>Preço</label>
+			</div>
+
+			<input class="btn btn-primary my-3" type="submit" value="Enviar">
+			<a href="../../destino" class="btn btn-danger"> Cancelar </a>
+		</form>
+	</main>
+
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
