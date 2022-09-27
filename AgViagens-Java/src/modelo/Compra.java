@@ -16,7 +16,6 @@ public class Compra {
 	public Compra(int id, int quantidade, Destino destino, Cliente cliente) {
 		this.id = id;
 		this.quantidade = quantidade;
-		this.total = valorTotal(destino.getPreco());
 		this.destino = destino;
 		this.cliente = cliente;
 
@@ -47,7 +46,7 @@ public class Compra {
 	}
 
 	public double getTotal() {
-		return total;
+		return total = valorTotal();
 	}
 
 	public void setTotal(double total) {
@@ -60,7 +59,6 @@ public class Compra {
 
 	public void setDestino(Destino destino) {
 		this.destino = destino;
-		this.total += destino.getPreco() * quantidade;
 	}
 
 	public Cliente getCliente() {
@@ -71,8 +69,8 @@ public class Compra {
 		this.cliente = cliente;
 	}
 
-	private double valorTotal(double preco) {
-		return this.total = this.quantidade * preco;
+	private double valorTotal() {
+		return this.total =  this.quantidade * this.destino.getPreco();
 	}
 
 	@Override
