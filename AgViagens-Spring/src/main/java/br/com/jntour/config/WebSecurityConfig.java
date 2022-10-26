@@ -21,7 +21,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.httpBasic().and().authorizeHttpRequests().anyRequest().authenticated().and().csrf().disable();
+
+		http.authorizeHttpRequests().antMatchers("/resources/***").permitAll()
+				.antMatchers("/", "/destinos", "/promocoes", "/contato").permitAll().antMatchers("/icon/***")
+				.permitAll().antMatchers("/css/***").permitAll().antMatchers("/imagens/***").permitAll()
+				.antMatchers("/resources/***").permitAll().anyRequest().authenticated().and().csrf().disable()
+
+				.formLogin().and().httpBasic();
+
 	}
 
 	@Override
@@ -33,5 +40,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
 }
